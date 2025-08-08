@@ -21,12 +21,15 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       await dispatch(login(formData, setIsLoading));
+      setIsLoading(false);
       toast.success("User logged in successfully");
       navigate("/");
     } catch (error) {
       setError(error.message);
+      setIsLoading(false);
     }
   };
   const handleChange = (e) => {
@@ -84,7 +87,6 @@ const Login = () => {
             type="submit"
             disabled={isLoading}
           >
-            Login
             {isLoading ? (
               <Loader className="w-6 h-6 animate-spin  mx-auto" />
             ) : (

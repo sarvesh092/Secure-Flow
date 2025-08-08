@@ -22,12 +22,15 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
-      await dispatch(signup(formData, setIsLoading, setError));
+      await dispatch(signup(formData, setIsLoading));
       navigate("/verify-email");
       toast.success("User registered successfully");
+      setError(null);
     } catch (error) {
-      toast.error(error.message);
+      setError(error.message);
+      setIsLoading(false);
     }
   };
   console.log("form data", formData);
@@ -76,6 +79,7 @@ const Signup = () => {
             value={formData.password}
             onChange={handleChange}
           />
+          {error && <p className="text-red-500 ">{error}</p>}
           <PasswordStrengthChecker password={formData.password} />
           <motion.button
             className="mt-5 w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white 

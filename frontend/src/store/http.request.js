@@ -1,8 +1,16 @@
 import axios from "axios";
+
+//sends cookies with requests
+const axiosInstance = axios.create({
+  withCredentials: true,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 const https = {
   async post(url, data, config = {}) {
     try {
-      const response = await axios.post(url, data, config);
+      const response = await axiosInstance.post(url, data, config);
       return { res: response, error: null };
     } catch (error) {
       return { res: null, error: error };
@@ -10,7 +18,7 @@ const https = {
   },
   async get(url, config = {}) {
     try {
-      const response = await axios.get(url, config);
+      const response = await axiosInstance.get(url, config);
       return { res: response, error: null };
     } catch (error) {
       return { res: null, error: error };
@@ -18,7 +26,7 @@ const https = {
   },
   async put(url, data, config = {}) {
     try {
-      const response = await axios.put(url, data, config);
+      const response = await axiosInstance.put(url, data, config);
       return { res: response, error: null };
     } catch (error) {
       return { res: null, error: error };
@@ -26,7 +34,7 @@ const https = {
   },
   async delete(url, data, config = {}) {
     try {
-      const response = await axios.delete(url, data, config);
+      const response = await axiosInstance.delete(url, data, config);
       return { res: response, error: null };
     } catch (error) {
       return { res: null, error: error };

@@ -65,13 +65,16 @@ const EmailVerification = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const verificationCode = code.join("");
+    setIsLoading(true);
 
     try {
-      await dispatch(verifyEmail(verificationCode, setIsLoading));
+      await dispatch(verifyEmail({ code: verificationCode }));
       navigate("/");
+      setIsLoading(false);
       toast.success("Email verified successfully");
     } catch (err) {
       console.error(err);
+      setIsLoading(false);
       toast.error(err.message || "Verification failed");
     }
   };

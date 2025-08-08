@@ -1,6 +1,7 @@
 import { User } from "../models/user.model.js";
 import { generateJwtTokenAndCookie } from "../utils/generateJwtTokenAndCookie.js";
 import { getVerificationToken } from "../utils/getVerificationToken.js";
+import mongoose from "mongoose";
 import {
   sendVerificationMail,
   welcomeEmail,
@@ -12,16 +13,22 @@ import crypto from "crypto";
 
 const signup = async (req, res) => {
   const { username, email, password } = req.body;
+  const session = await mongoose.startSession();
+  session.startTransaction();
+
   try {
     if (!username || !email || !password) {
       throw new Error("All fields are required");
     }
+
     const userExistAlready = await User.findOne({
       $or: [{ username }, { email }],
-    });
+    }).session(session);
+
     if (userExistAlready) {
-      throw new Error("User already Exists");
+      throw new Error("User already exists");
     }
+
     const encryptedPassword = await bcrypt.hash(password, 10);
     const verificationToken = getVerificationToken();
     const user = new User({
@@ -32,17 +39,43 @@ const signup = async (req, res) => {
       verificationTokenExpiresAt: Date.now() + 24 * 60 * 60 * 1000,
     });
 
-    await user.save();
+    await user.save({ session });
+    await sendVerificationMail(user.email, verificationToken);
+    // If email is sent successfully, commit the transaction
+    await session.commitTransaction();
 
     generateJwtTokenAndCookie(res, user._id);
-    await sendVerificationMail(user.email, verificationToken);
     const newUser = await User.findById(user.id).select("-password");
 
-    res
-      .status(200)
-      .json({ success: true, message: "User created successfully!!", newUser });
+    res.status(200).json({
+      success: true,
+      message:
+        "User created successfully! Please check your email to verify your account.",
+      user: newUser,
+    });
   } catch (error) {
-    res.status(400).json({ success: false, message: error.message });
+    // If any error occurs, abort the transaction
+    await session.abortTransaction();
+    console.error("Error in signup:", error);
+
+    if (
+      error.message.includes(
+        "Demo domains can only be used to send emails to account owners"
+      )
+    ) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Please use a different email address for testing. Demo email services have restrictions.",
+      });
+    }
+
+    res.status(400).json({
+      success: false,
+      message: error.message || "Failed to create user. Please try again.",
+    });
+  } finally {
+    session.endSession();
   }
 };
 

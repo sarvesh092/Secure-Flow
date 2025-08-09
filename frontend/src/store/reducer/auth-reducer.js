@@ -32,7 +32,7 @@ const authReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         user: payload.user,
-        isAuthenticated: true, // Assuming login only succeeds if verified
+        isAuthenticated: true,
         isLoading: false,
       };
 

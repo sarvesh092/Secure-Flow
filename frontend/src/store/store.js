@@ -17,7 +17,6 @@ const rootreducer = (state, action) => {
     localStorage.clear();
     sessionStorage.clear();
     storage.removeItem("persist:root");
-    persistor.purge();
     return combineReduxReducer(undefined, action);
   }
   return combineReduxReducer(state, action);

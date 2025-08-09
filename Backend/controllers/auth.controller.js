@@ -124,7 +124,7 @@ const login = async (req, res) => {
     }
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordCorrect) {
-      return res.status(400).json({ messsage: "incorrect password" });
+      return res.status(400).json({ message: "incorrect password" });
     }
     generateJwtTokenAndCookie(res, user._id);
     user.lastlogin = Date.now();

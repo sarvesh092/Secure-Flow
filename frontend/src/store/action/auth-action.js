@@ -4,6 +4,7 @@ import {
   LOGIN,
   CHECK_AUTHENTICATION,
   AUTH_LOADING,
+  LOGOUT,
 } from "../action-types";
 import toast from "react-hot-toast";
 
@@ -28,6 +29,7 @@ export const checkAuthentication = () => {
         });
       }
     } catch (error) {
+      dispatch({ type: AUTH_LOADING });
       console.log(
         "error",
         error.response.data.message || "authentication failed"
@@ -45,7 +47,6 @@ export const signup = (user) => {
       dispatch({ type: SIGNUP, payload: res.data });
     } else if (error) {
       const err = error.response.data.message || "Something went wrong";
-      console.log("error", error);
       throw new Error(err);
     }
   };
@@ -57,8 +58,7 @@ export const verifyEmail = (code) => {
       `${import.meta.env.VITE_BASE_URL}auth/verify-email`,
       code
     );
-    if (res) {
-      console.log("res", res);
+    if (!error && res) {
       dispatch(checkAuthentication());
     }
     if (error) {
@@ -69,21 +69,17 @@ export const verifyEmail = (code) => {
 };
 export const login = (user) => {
   return async (dispatch) => {
-    dispatch({ type: AUTH_LOADING });
-
     const { res, error } = await https.post(
       `${import.meta.env.VITE_BASE_URL}auth/login`,
       user
     );
-
-    if (res?.data) {
+    if (!error) {
       dispatch({
         type: LOGIN,
         payload: res.data,
       });
-      return { success: true };
     } else if (error) {
-      throw new Error(error.response?.data?.message || "Login failed");
+      throw new Error(error.response.data.message || "Login failed");
     }
   };
 };
@@ -105,12 +101,13 @@ export const forgotPassword = (user, setLoading) => {
   };
 };
 export const logout = () => {
-  return async () => {
-    const { res, error } = await https.get(
+  return async (dispatch) => {
+    const { error } = await https.get(
       `${import.meta.env.VITE_BASE_URL}auth/logout`
     );
-    if (res) {
-      toast.success("User logged out successfully");
+    if (!error) {
+      dispatch({ type: LOGOUT });
+      toast.success("Logged out successfully");
     }
     if (error) {
       const err = error.response.data.message || "Something went wrong";

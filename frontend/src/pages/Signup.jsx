@@ -33,7 +33,6 @@ const Signup = () => {
       setIsLoading(false);
     }
   };
-  console.log("form data", formData);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

@@ -10,12 +10,12 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -23,12 +23,12 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      await dispatch(login(formData, setIsLoading));
-      setIsLoading(false);
+      await dispatch(login(formData, navigate));
       toast.success("User logged in successfully");
       navigate("/");
     } catch (error) {
-      setError(error.message);
+      setError(error.message || "Login failed. Please try again.");
+    } finally {
       setIsLoading(false);
     }
   };
@@ -69,7 +69,7 @@ const Login = () => {
             value={formData.password}
             onChange={handleChange}
           />
-
+          {error && <p className="text-red-500 font-semibold mb-2">{error}</p>}
           <div className="flex items-center mb-6">
             <Link
               to="/forgot-password"
@@ -78,7 +78,6 @@ const Login = () => {
               Forgot password?
             </Link>
           </div>
-          {error && <p className="text-red-500 font-semibold mb-2">{error}</p>}
 
           <motion.button
             whileHover={{ scale: 1.02 }}

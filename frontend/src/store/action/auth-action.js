@@ -83,19 +83,14 @@ export const login = (user) => {
     }
   };
 };
-export const forgotPassword = (user, setLoading) => {
-  setLoading(true);
+export const forgotPassword = (user) => {
   return async () => {
-    const { res, error } = await https.post(
-      `${import.meta.env.VITE_BASE_URL}auth/forgot-password`,
+    const { error } = await https.post(
+      `${import.meta.env.VITE_BASE_URL}auth/forgotPassword`,
       user
     );
-    if (res) {
-      setLoading(false);
-    }
     if (error) {
       const err = error.response.data.message || "Something went wrong";
-      setLoading(false);
       throw new Error(err);
     }
   };
@@ -112,6 +107,18 @@ export const logout = () => {
     if (error) {
       const err = error.response.data.message || "Something went wrong";
       toast.error(err);
+      throw new Error(err);
+    }
+  };
+};
+export const resetPassword = (password, token) => {
+  return async () => {
+    const { error } = await https.post(
+      `${import.meta.env.VITE_BASE_URL}auth/changePassword/${token}`,
+      { newPassword: password }
+    );
+    if (error) {
+      const err = error.response.data.message || "Something went wrong";
       throw new Error(err);
     }
   };

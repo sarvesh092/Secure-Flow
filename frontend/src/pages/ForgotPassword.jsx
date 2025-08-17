@@ -16,10 +16,13 @@ const ForgotPasswordPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
-      await dispatch(forgotPassword(email, setIsLoading));
+      await dispatch(forgotPassword({ email }));
+      setIsLoading(false);
       setIsSubmitted(true);
     } catch (error) {
+      setIsLoading(false);
       console.error(error);
       toast.error(error.message || "Something went wrong");
     }

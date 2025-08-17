@@ -5,8 +5,10 @@ import {
   ProtectedRoute,
 } from "../utils/ProtectedRoute";
 import Loader from "../component/Loader";
+import { AuthLayout } from "../component/AuthLayout";
 
 const Dashboard = lazy(() => import("../pages/Dashboard"));
+const About = lazy(() => import("../pages/About"));
 const Signup = lazy(() => import("../pages/Signup"));
 const Login = lazy(() => import("../pages/Login"));
 const ForgotPassword = lazy(() => import("../pages/ForgotPassword"));
@@ -23,13 +25,23 @@ const mainroutes = createBrowserRouter([
       </ProtectedRoute>
     ),
   },
+  {
+    path: "/about",
+    element: (
+      <ProtectedRoute>
+        <About />
+      </ProtectedRoute>
+    ),
+  },
 
   // Auth routes - redirect if already authenticated and verified
   {
     path: "/login",
     element: (
       <RedirectAuthenticatedUser>
-        <Login />
+        <AuthLayout>
+          <Login />
+        </AuthLayout>
       </RedirectAuthenticatedUser>
     ),
   },
@@ -37,7 +49,9 @@ const mainroutes = createBrowserRouter([
     path: "/signup",
     element: (
       <RedirectAuthenticatedUser>
-        <Signup />
+        <AuthLayout>
+          <Signup />
+        </AuthLayout>
       </RedirectAuthenticatedUser>
     ),
   },
@@ -45,7 +59,9 @@ const mainroutes = createBrowserRouter([
     path: "/forgot-password",
     element: (
       <RedirectAuthenticatedUser>
-        <ForgotPassword />
+        <AuthLayout>
+          <ForgotPassword />
+        </AuthLayout>
       </RedirectAuthenticatedUser>
     ),
   },
@@ -53,19 +69,25 @@ const mainroutes = createBrowserRouter([
     path: "/reset-password/:token",
     element: (
       <RedirectAuthenticatedUser>
-        <ResetPassword />
+        <AuthLayout>
+          <ResetPassword />
+        </AuthLayout>
       </RedirectAuthenticatedUser>
     ),
   },
   // Email verification route - requires authentication but not verification
   {
     path: "/verify-email",
-    element: <EmailVerification />,
+    element: (
+      <AuthLayout>
+        <EmailVerification />
+      </AuthLayout>
+    ),
   },
 
   {
     path: "*",
-    element: <div>404 - Page Not Found</div>,
+    element: <div className="min-h-screen flex items-center justify-center bg-slate-900 text-white">404 - Page Not Found</div>,
   },
 ]);
 

@@ -4,25 +4,26 @@ export const VERIFICATION_EMAIL_TEMPLATE = `
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Verify Your Email</title>
+  <title>Verify Your Email - SecureFlow</title>
 </head>
-<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-  <div style="background: linear-gradient(to right, #4CAF50, #45a049); padding: 20px; text-align: center;">
-    <h1 style="color: white; margin: 0;">Verify Your Email</h1>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #e0e0e0; max-width: 600px; margin: 0 auto; padding: 0; background-color: #121212;">
+  <div style="background: #1e1e1e; padding: 30px 20px; text-align: center; border-top: 4px solid #7b1fa2;">
+    <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 600;">Verify Your Email</h1>
   </div>
-  <div style="background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-    <p>Hello,</p>
-    <p>Thank you for signing up! Your verification code is:</p>
+  <div style="background-color: #1e1e1e; padding: 30px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); margin-bottom: 20px;">
+    <p style="margin: 0 0 20px 0; color: #e0e0e0;">Hello,</p>
+    <p style="margin: 0 0 20px 0; color: #e0e0e0;">Thank you for signing up to SecureFlow! Your verification code is:</p>
     <div style="text-align: center; margin: 30px 0;">
-      <span style="font-size: 32px; font-weight: bold; letter-spacing: 5px; color: #4CAF50;">{verificationCode}</span>
+      <span style="font-size: 36px; font-weight: 700; letter-spacing: 3px; color: #bb86fc; background: rgba(187, 134, 252, 0.1); padding: 15px 25px; border-radius: 8px; display: inline-block;">{verificationCode}</span>
     </div>
-    <p>Enter this code on the verification page to complete your registration.</p>
-    <p>This code will expire in 15 minutes for security reasons.</p>
-    <p>If you didn't create an account with us, please ignore this email.</p>
-    <p>Best regards,<br>Your App Team</p>
+    <p style="margin: 0 0 15px 0; color: #e0e0e0;">Please enter this code on the verification page to complete your registration.</p>
+    <p style="margin: 0 0 20px 0; color: #e0e0e0;">This code will expire in 15 minutes for security reasons.</p>
+    <p style="margin: 0 0 25px 0; color: #e0e0e0;">If you didn't create an account with us, please ignore this email.</p>
+    <p style="margin: 0; color: #e0e0e0;">Best regards,<br><strong>The SecureFlow Team</strong></p>
   </div>
-  <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
-    <p>This is an automated message, please do not reply to this email.</p>
+  <div style="text-align: center; color: #9e9e9e; font-size: 12px; line-height: 1.5; padding: 20px 0;">
+    <p style="margin: 0 0 5px 0;">This is an automated message, please do not reply to this email.</p>
+    <p style="margin: 0;">&copy; ${new Date().getFullYear()} SecureFlow. All rights reserved.</p>
   </div>
 </body>
 </html>
@@ -34,32 +35,40 @@ export const PASSWORD_RESET_SUCCESS_TEMPLATE = `
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Password Reset Successful</title>
+  <title>Password Reset Successful - SecureFlow</title>
 </head>
-<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-  <div style="background: linear-gradient(to right, #4CAF50, #45a049); padding: 20px; text-align: center;">
-    <h1 style="color: white; margin: 0;">Password Reset Successful</h1>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #e0e0e0; max-width: 600px; margin: 0 auto; padding: 0; background-color: #121212;">
+  <div style="background: #1e1e1e; padding: 30px 20px; text-align: center; border-top: 4px solid #7b1fa2;">
+    <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 600;">Password Reset Successful</h1>
   </div>
-  <div style="background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-    <p>Hello,</p>
-    <p>We're writing to confirm that your password has been successfully reset.</p>
+  <div style="background-color: #1e1e1e; padding: 30px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); margin-bottom: 20px;">
+    <p style="margin: 0 0 20px 0; color: #e0e0e0;">Hello,</p>
+    <p style="margin: 0 0 20px 0; color: #e0e0e0;">We're writing to confirm that your SecureFlow account password has been successfully reset.</p>
     <div style="text-align: center; margin: 30px 0;">
-      <div style="background-color: #4CAF50; color: white; width: 50px; height: 50px; line-height: 50px; border-radius: 50%; display: inline-block; font-size: 30px;">
+      <div style="background-color: #7b1fa2; color: white; width: 60px; height: 60px; line-height: 60px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 30px;">
         ✓
       </div>
     </div>
-    <p>If you did not initiate this password reset, please contact our support team immediately.</p>
-    <p>For security reasons, we recommend that you:</p>
-    <ul>
-      <li>Use a strong, unique password</li>
-      <li>Enable two-factor authentication if available</li>
-      <li>Avoid using the same password across multiple sites</li>
+    <div style="background-color: rgba(123, 31, 162, 0.1); border-left: 4px solid #7b1fa2; padding: 15px; margin: 20px 0; border-radius: 0 4px 4px 0;">
+      <p style="margin: 0 0 10px 0; color: #e0e0e0; font-weight: 600; display: flex; align-items: center;">
+        <span style="color: #bb86fc; margin-right: 8px;">⚠️</span> Security Notice
+      </p>
+      <p style="margin: 0; color: #e0e0e0; font-size: 14px;">
+        If you did not initiate this password reset, please contact our support team immediately at <a href="mailto:support@secureflow.app" style="color: #bb86fc; text-decoration: none;">support@secureflow.app</a>.
+      </p>
+    </div>
+    <p style="margin: 0 0 15px 0; color: #e0e0e0; font-weight: 600;">For your security, we recommend that you:</p>
+    <ul style="margin: 0 0 25px 0; padding-left: 20px; color: #e0e0e0;">
+      <li style="margin-bottom: 8px;">Use a strong, unique password</li>
+      <li style="margin-bottom: 8px;">Enable two-factor authentication in your account settings</li>
+      <li>Regularly update your password and never reuse old passwords</li>
     </ul>
-    <p>Thank you for helping us keep your account secure.</p>
-    <p>Best regards,<br>Your App Team</p>
+    <p style="margin: 0 0 25px 0; color: #e0e0e0;">Thank you for helping us keep your account secure.</p>
+    <p style="margin: 0; color: #e0e0e0;">Best regards,<br><strong>The SecureFlow Team</strong></p>
   </div>
-  <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
-    <p>This is an automated message, please do not reply to this email.</p>
+  <div style="text-align: center; color: #9e9e9e; font-size: 12px; line-height: 1.5; padding: 20px 0;">
+    <p style="margin: 0 0 5px 0;">This is an automated message, please do not reply to this email.</p>
+    <p style="margin: 0;">&copy; ${new Date().getFullYear()} SecureFlow. All rights reserved.</p>
   </div>
 </body>
 </html>
@@ -71,24 +80,38 @@ export const PASSWORD_RESET_REQUEST_TEMPLATE = `
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reset Your Password</title>
+  <title>Reset Your Password - SecureFlow</title>
 </head>
-<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-  <div style="background: linear-gradient(to right, #4CAF50, #45a049); padding: 20px; text-align: center;">
-    <h1 style="color: white; margin: 0;">Password Reset</h1>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #e0e0e0; max-width: 600px; margin: 0 auto; padding: 0; background-color: #121212;">
+  <div style="background: #1e1e1e; padding: 30px 20px; text-align: center; border-top: 4px solid #7b1fa2;">
+    <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 600;">Reset Your Password</h1>
   </div>
-  <div style="background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-    <p>Hello,</p>
-    <p>We received a request to reset your password. If you didn't make this request, please ignore this email.</p>
-    <p>To reset your password, click the button below:</p>
-    <div style="text-align: center; margin: 30px 0;">
-      <a href="{resetURL}" style="background-color: #4CAF50; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">Reset Password</a>
+  <div style="background-color: #1e1e1e; padding: 30px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); margin-bottom: 20px;">
+    <p style="margin: 0 0 20px 0; color: #e0e0e0;">Hello,</p>
+    <p style="margin: 0 0 20px 0; color: #e0e0e0;">We received a request to reset your SecureFlow account password. If you didn't make this request, please ignore this email.</p>
+    <p style="margin: 0 0 20px 0; color: #e0e0e0;">To reset your password, click the button below:</p>
+    <div style="text-align: center; margin: 35px 0;">
+      <a href="{resetURL}" style="background: linear-gradient(135deg, #7b1fa2 0%, #4a148c 100%); color: white; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 16px; display: inline-block; box-shadow: 0 4px 12px rgba(123, 31, 162, 0.3); transition: all 0.3s ease;">
+        Reset Password
+      </a>
     </div>
-    <p>This link will expire in 1 hour for security reasons.</p>
-    <p>Best regards,<br>Your App Team</p>
+    <p style="margin: 0 0 10px 0; color: #9e9e9e; font-size: 14px; text-align: center;">Or copy and paste this link into your browser:</p>
+    <div style="word-break: break-all; background-color: #252525; padding: 12px; border-radius: 6px; margin-bottom: 25px; font-size: 13px; color: #bb86fc;">
+      {resetURL}
+    </div>
+    <div style="background-color: rgba(123, 31, 162, 0.1); border-left: 4px solid #7b1fa2; padding: 15px; margin: 25px 0; border-radius: 0 4px 4px 0;">
+      <p style="margin: 0 0 10px 0; color: #e0e0e0; font-weight: 600; display: flex; align-items: center;">
+        <span style="color: #bb86fc; margin-right: 8px;">🔒</span> Security Notice
+      </p>
+      <p style="margin: 0; color: #e0e0e0; font-size: 14px;">
+        For your security, this link will expire in 1 hour. Never share your password or this link with anyone.
+      </p>
+    </div>
+    <p style="margin: 0; color: #e0e0e0;">Best regards,<br><strong>The SecureFlow Team</strong></p>
   </div>
-  <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
-    <p>This is an automated message, please do not reply to this email.</p>
+  <div style="text-align: center; color: #9e9e9e; font-size: 12px; line-height: 1.5; padding: 20px 0;">
+    <p style="margin: 0 0 5px 0;">This is an automated message, please do not reply to this email.</p>
+    <p style="margin: 0;">&copy; ${new Date().getFullYear()} SecureFlow. All rights reserved.</p>
   </div>
 </body>
 </html>

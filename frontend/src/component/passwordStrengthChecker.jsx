@@ -94,7 +94,7 @@ const PasswordStrengthChecker = ({ password }) => {
               <X className="size-4 text-gray-500 mr-2" />
             )}
             <span
-              className={item.condition ? "text-green-500" : "text-red-400"}
+              className={item.condition ? "text-green-500" : "text-gray-400"}
             >
               {item.message}
             </span>

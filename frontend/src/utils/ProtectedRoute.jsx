@@ -19,8 +19,6 @@ const ProtectedRoute = ({ children }) => {
 
 const RedirectAuthenticatedUser = ({ children }) => {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
-  console.log("isAuthenticated", isAuthenticated);
-  console.log("user", user);
 
   if (isAuthenticated && user?.isVerified) {
     return <Navigate to="/" replace />;
